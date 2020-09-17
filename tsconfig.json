@@ -6,5 +6,12 @@
 */
 {
   "files": [],
-  "references": []
+  "references": [
+    {
+      "path": "./projects/tetris-app/tsconfig.app.json"
+    },
+    {
+      "path": "./projects/tetris-app/tsconfig.spec.json"
+    }
+]
 }

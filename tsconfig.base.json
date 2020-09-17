@@ -19,10 +19,13 @@
     "lib": [
       "es2018",
       "dom"
-    ]
+    ],
+    "typeRoots": [
+      "node_modules"
+    ] 
   },
   "angularCompilerOptions": {
     "strictInjectionParameters": true,
     "strictTemplates": true
-  }
+  },
 }

@@ -7,15 +7,20 @@
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "format:test": "prettier \"projects/**/*.{ts,html,md,scss,json}\" --list-different",
+    "format:write": "prettier \"projects/**/*.{ts,html,md,scss,json}\" --write",
+    "analyze": "ng build --prod --stats-json && webpack-bundle-analyzer dist/tetris-app/stats.json"
   },
   "private": true,
   "dependencies": {
     "@angular/animations": "~10.0.11",
+    "@angular/cdk": "^10.2.1",
     "@angular/common": "~10.0.11",
     "@angular/compiler": "~10.0.11",
     "@angular/core": "~10.0.11",
     "@angular/forms": "~10.0.11",
+    "@angular/material": "^10.2.1",
     "@angular/platform-browser": "~10.0.11",
     "@angular/platform-browser-dynamic": "~10.0.11",
     "@angular/router": "~10.0.11",
@@ -24,11 +29,12 @@
     "zone.js": "~0.10.3"
   },
   "devDependencies": {
+    "@angular-devkit/build-angular": "~0.1000.8",
     "@angular/cli": "~10.0.7",
     "@angular/compiler-cli": "~10.0.11",
-    "@types/node": "^12.11.1",
     "@types/jasmine": "~3.5.0",
     "@types/jasminewd2": "~2.0.3",
+    "@types/node": "^12.11.1",
     "codelyzer": "^6.0.0",
     "jasmine-core": "~3.5.0",
     "jasmine-spec-reporter": "~5.0.0",
@@ -37,9 +43,12 @@
     "karma-coverage-istanbul-reporter": "~3.0.2",
     "karma-jasmine": "~3.3.0",
     "karma-jasmine-html-reporter": "^1.5.0",
+    "prettier": "^2.1.2",
     "protractor": "~7.0.0",
     "ts-node": "~8.3.0",
     "tslint": "~6.1.0",
-    "typescript": "~3.9.5"
+    "tslint-config-prettier": "^1.18.0",
+    "typescript": "~3.9.5",
+    "webpack-bundle-analyzer": "^3.8.0"
   }
 }
