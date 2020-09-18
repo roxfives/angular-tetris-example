@@ -10,6 +10,6 @@ export class MainLayoutContainer implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    
   }
-
 }
