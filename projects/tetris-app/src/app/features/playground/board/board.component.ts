@@ -18,7 +18,7 @@ export class BoardComponent implements OnInit {
   blockSize!: number;
   
   @ViewChild('board')
-  board!: ElementRef<HTMLCanvasElement>;
+  boardRef!: ElementRef<HTMLCanvasElement>;
 
   ctx!: CanvasRenderingContext2D;
   points!: number;
@@ -37,7 +37,7 @@ export class BoardComponent implements OnInit {
 
   private initBoard() {
     // Get the 2D context that we draw on.
-    const aux = this.board.nativeElement.getContext('2d');
+    const aux = this.boardRef.nativeElement.getContext('2d');
     if (aux) {
       this.ctx = aux;
     } else {
