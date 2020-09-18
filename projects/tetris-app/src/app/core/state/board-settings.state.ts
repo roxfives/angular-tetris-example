@@ -1,8 +1,6 @@
 import { Injectable } from '@angular/core';
 import { State, Selector } from '@ngxs/store';
 
-import { of } from 'rxjs';
-
 
 export class BoardSettingsStateModel {
   public board: {
