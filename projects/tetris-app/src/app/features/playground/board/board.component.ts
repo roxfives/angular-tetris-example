@@ -64,4 +64,6 @@ export class BoardComponent implements OnInit {
         })
       );
   }
+
+  play() {}
 }
