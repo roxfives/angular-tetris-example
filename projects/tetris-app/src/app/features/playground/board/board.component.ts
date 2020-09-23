@@ -1,5 +1,13 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { combineLatest, Observable } from 'rxjs';
+import { 
+  AfterViewInit,
+   ChangeDetectorRef,
+   Component,
+   ElementRef,
+   ViewChild 
+  } from '@angular/core';
+import { combineLatest,
+   Observable 
+  } from 'rxjs';
 
 import { first, tap, finalize } from 'rxjs/operators';
 
@@ -13,7 +21,7 @@ import { PieceImpl } from '../pieces/piece-j';
   templateUrl: './board.component.html',
   styleUrls: ['./board.component.scss']
 })
-export class BoardComponent implements OnInit {
+export class BoardComponent implements AfterViewInit {
 
   columns!: number;
   rows!: number;
@@ -30,14 +38,16 @@ export class BoardComponent implements OnInit {
   lines!: number;
   level!: number;
   
-  constructor(private boardService: BoardService) { }
-
-  ngOnInit(): void { }
+  constructor(private boardService: BoardService,
+              private changeDetector: ChangeDetectorRef) { }
 
   ngAfterViewInit(): void {
     this.initBoardParams().pipe(
-      finalize(() => 
-        this.initBoard())
+      finalize(() => {
+        this.initBoard();
+        this.changeDetector.detectChanges();
+
+      })
     )
     .subscribe();
   }
