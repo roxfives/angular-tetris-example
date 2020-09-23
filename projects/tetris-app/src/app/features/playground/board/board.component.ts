@@ -27,6 +27,7 @@ export class BoardComponent implements AfterViewInit {
   rows!: number;
   blockSize!: number;
   
+  // TODO: Move piece to the board service
   piece!: Piece;
   
   @ViewChild('board')
