@@ -10,6 +10,8 @@ import { PlaygroundComponent } from './playground.component';
 
 import { BoardComponent } from './board/board.component';
 import { BoardSettingsState } from '../../core/state/board-settings.state';
+import { NgxsDispatchPluginModule } from '@ngxs-labs/dispatch-decorator';
+import { BoardState } from '../../core/state/board.state';
 
 
 @NgModule({
@@ -19,7 +21,8 @@ import { BoardSettingsState } from '../../core/state/board-settings.state';
     PlaygroundRoutingModule,
     RouterModule,
 
-    NgxsModule.forFeature([BoardSettingsState]),
+    NgxsModule.forFeature([BoardSettingsState, BoardState]),
+    NgxsDispatchPluginModule
   ]
 })
 export class PlaygroundModule { }

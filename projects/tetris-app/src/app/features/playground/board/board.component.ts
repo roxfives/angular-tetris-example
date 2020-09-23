@@ -1,9 +1,11 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { combineLatest } from 'rxjs';
+import { combineLatest, Observable } from 'rxjs';
 
 import { first, tap, finalize } from 'rxjs/operators';
 
 import { BoardService } from '../../../core/service/board.service';
+import { Piece } from '../pieces/piece';
+import { PieceImpl } from '../pieces/piece-j';
 
 
 @Component({
@@ -17,8 +19,11 @@ export class BoardComponent implements OnInit {
   rows!: number;
   blockSize!: number;
   
+  piece!: Piece;
+  
   @ViewChild('board')
   boardRef!: ElementRef<HTMLCanvasElement>;
+  board$!: Observable<number[][]>;
 
   ctx!: CanvasRenderingContext2D;
   points!: number;
@@ -27,19 +32,25 @@ export class BoardComponent implements OnInit {
   
   constructor(private boardService: BoardService) { }
 
-  ngOnInit(): void {
+  ngOnInit(): void { }
+
+  ngAfterViewInit(): void {
     this.initBoardParams().pipe(
-        finalize(() => 
-          this.initBoard())
-      )
-      .subscribe();
+      finalize(() => 
+        this.initBoard())
+    )
+    .subscribe();
   }
 
   private initBoard() {
+    this.board$ = this.boardService.board$;
+    this.board$.subscribe(board => 
+      console.log(board));
     // Get the 2D context that we draw on.
     const aux = this.boardRef.nativeElement.getContext('2d');
     if (aux) {
       this.ctx = aux;
+      console.log(this.ctx);
     } else {
       console.log('Canvas context is null');
       return;
@@ -65,5 +76,10 @@ export class BoardComponent implements OnInit {
       );
   }
 
-  play() {}
+  play() {
+    this.boardService.initBoard(this.rows, this.columns);
+
+    this.piece = new PieceImpl(this.ctx);
+    this.piece.draw(this.blockSize);
+  }
 }

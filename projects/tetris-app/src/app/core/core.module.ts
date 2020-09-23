@@ -9,7 +9,6 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
 import { RouterModule } from '@angular/router';
 import { NgxsModule } from '@ngxs/store';
-import { BoardSettingsState } from './state/board-settings.state';
 
 
 @NgModule({
@@ -19,7 +18,7 @@ import { BoardSettingsState } from './state/board-settings.state';
     BrowserAnimationsModule,
     RouterModule,
 
-    NgxsModule.forRoot([BoardSettingsState]),
+    NgxsModule.forRoot(),
 
     MatToolbarModule,
     MatButtonModule
